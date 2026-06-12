@@ -1,0 +1,249 @@
+:root {
+    --bg: #f6f7f9;
+    --panel: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --border: #d1d5db;
+    --accent: #fc6e03;
+    --danger: #b91c1c;
+    --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+header {
+    padding: 28px 20px 16px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0 0 8px;
+    font-size: clamp(24px, 4vw, 38px);
+    font-weight: 800;
+}
+
+header p {
+    margin: 0 auto;
+    max-width: 760px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+main {
+    width: min(1180px, 94vw);
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+}
+
+.controls {
+    padding: 18px;
+    position: sticky;
+    top: 14px;
+}
+
+.control-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.hint {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+input[type="file"],
+input[type="text"],
+select {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 15px;
+    background: #fff;
+    color: var(--text);
+}
+
+input[type="color"] {
+    width: 52px;
+    height: 44px;
+    padding: 2px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: #fff;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+.color-row {
+    display: grid;
+    grid-template-columns: 1fr 58px;
+    gap: 10px;
+    align-items: center;
+}
+
+.value-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+button {
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-weight: 800;
+    cursor: pointer;
+    color: #fff;
+    background: var(--accent);
+}
+
+button.secondary {
+    color: var(--text);
+    background: #e5e7eb;
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 10px;
+    text-align: center;
+    background: #fafafa;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.drop-zone.dragover {
+    border-color: var(--accent);
+    background: #fff7ed;
+}
+
+.preview {
+    padding: 18px;
+    min-height: 520px;
+}
+
+.canvas-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.canvas-card {
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    padding: 12px;
+    background: linear-gradient(45deg, #f3f4f6 25%, transparent 25%),
+        linear-gradient(-45deg, #f3f4f6 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #f3f4f6 75%),
+        linear-gradient(-45deg, transparent 75%, #f3f4f6 75%);
+    background-size: 22px 22px;
+    background-position: 0 0, 0 11px, 11px -11px, -11px 0;
+    background-color: #fff;
+}
+
+.canvas-title {
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: var(--text);
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 12px;
+}
+
+.empty {
+    min-height: 430px;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--muted);
+    border: 1px dashed var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    background: #fff;
+}
+
+.status {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.error {
+    color: var(--danger);
+    font-weight: 700;
+}
+
+.file-info {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+@media (max-width: 900px) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        position: static;
+    }
+
+    .canvas-grid {
+        grid-template-columns: 1fr;
+    }
+}
