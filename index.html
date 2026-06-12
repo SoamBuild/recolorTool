@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trace Recolor App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Cambiar color de trazos</h1>
+        <p>Sube una imagen, escribe un color HEX y descarga una version con los trazos recoloreados.</p>
+    </header>
+
+    <main>
+        <section class="panel controls">
+            <div class="control-group">
+                <label for="imageInput">Imagen</label>
+                <input id="imageInput" type="file"
+                    accept=".png,.jpg,.jpeg,.webp,.bmp,.gif,image/png,image/jpeg,image/webp,image/bmp,image/gif">
+                <div id="dropZone" class="drop-zone">Arrastra una imagen aqui o usa el boton de arriba.</div>
+                <div id="fileInfo" class="file-info"></div>
+                <span class="hint">Formatos recomendados: PNG, JPG, JPEG, WEBP, BMP o GIF. Si tu imagen es HEIC,
+                    conviertela a JPG o PNG.</span>
+            </div>
+
+            <div class="control-group">
+                <label for="hexInput">Color HEX</label>
+                <div class="color-row">
+                    <input id="hexInput" type="text" value="#fc6e03" placeholder="#fc6e03" maxlength="7">
+                    <input id="colorInput" type="color" value="#fc6e03">
+                </div>
+                <span class="hint">Ejemplos: #fc6e03, #949494, #00825d, #ffa300.</span>
+            </div>
+
+            <div class="control-group">
+                <label for="modeSelect">Modo de deteccion</label>
+                <select id="modeSelect">
+                    <option value="nonWhite">Trazos no blancos</option>
+                    <option value="dark">Trazos oscuros</option>
+                    <option value="alpha">Pixeles visibles</option>
+                </select>
+                <span class="hint">Usa trazos no blancos para fondo blanco. Usa pixeles visibles para PNG con
+                    transparencia.</span>
+            </div>
+
+            <div class="control-group">
+                <label for="sensitivityInput">Sensibilidad</label>
+                <input id="sensitivityInput" type="range" min="1" max="120" value="24">
+                <div class="value-row">
+                    <span>Menos</span>
+                    <strong id="sensitivityValue">24</strong>
+                    <span>Mas</span>
+                </div>
+                <span class="hint">Sube este valor si faltan bordes suaves. Bajalo si se colorea el fondo.</span>
+            </div>
+
+            <div class="control-group">
+                <label for="strengthInput">Intensidad del trazo</label>
+                <input id="strengthInput" type="range" min="50" max="220" value="120">
+                <div class="value-row">
+                    <span>Suave</span>
+                    <strong id="strengthValue">120%</strong>
+                    <span>Fuerte</span>
+                </div>
+                <span class="hint">Aumenta la intensidad para que el trazo se vea mas marcado.</span>
+            </div>
+
+            <div class="buttons">
+                <button id="downloadBtn" disabled>Descargar PNG</button>
+                <button id="resetBtn" class="secondary" disabled>Reiniciar</button>
+            </div>
+
+            <div id="status" class="status">Esperando imagen.</div>
+        </section>
+
+        <section class="panel preview">
+            <div id="emptyState" class="empty">
+                <div>
+                    <strong>Vista previa</strong>
+                    <p>Sube una imagen para ver el original y el resultado.</p>
+                </div>
+            </div>
+
+            <div id="canvasGrid" class="canvas-grid" hidden>
+                <div class="canvas-card">
+                    <div class="canvas-title">Original</div>
+                    <canvas id="sourceCanvas"></canvas>
+                </div>
+
+                <div class="canvas-card">
+                    <div class="canvas-title">Resultado</div>
+                    <canvas id="resultCanvas"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
